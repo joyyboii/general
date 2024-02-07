@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #eee;
+            padding: 1rem 0;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            padding: 0 0.5rem;
+        }
+
+        nav a:hover {
+            color: #f00;
+        }
+
+        main {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 2rem 0;
+        }
+
+        main .product-card {
+            width: 25%;
+            border: 1px solid #ddd;
+            padding: 1rem;
+            box-shadow: 1px 1px 2px #ccc;
+        }
+
+        main .product-card img {
+            width: 100%;
+        }
+
+        main .product-card h3 {
+            margin: 1rem 0;
+        }
+
+        main .product-card p {
+            margin-bottom: 1rem;
+        }
+
+        main .product-card button {
+            background-color: #f00;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        footer {
+	    position: fixed;
+	    bottom: 0;
+	    width: 100%;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                flex-direction: column;
+            }
+
+            main .product-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Shopping Website</h1>
+</header>
+<footer>
+	copyright;shopping website.All rights reserved.
+</footer>
+
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">Products</a>
+    <a href="#">Contact</a>
+</nav>
+
+<main>
+    <div class="product-card">
+        <img src="https://via.placeholder.com/300x200.png?text=Product+1" alt="Product 1">
+        <h3>Product 1</h3>
+        <p>$19.99</p>
+        <button>Add to Cart</button>
+    </div>
+    <div class="product-card">
+        <img src="https://via.placeholder.com/300x200.png?text=Product+2" alt="Product 2">
+        <h3>Product 2</h3>
+        <p>$29.99</p>
+        <button>Add to Cart</button>
+    </div>
+    <div class="product-card">
+        <img src="https://via.placeholder.com/300x200.png?text=Product+3" alt="Product 3">
+        <h3>Product 3</h3>
+        <p>$39.99</p>
+
+            <button class="cart">🛒</button>
+
+    <div class="cart-products">
+        <h3>Cart</h3>
+        <ul id="cart-list"></ul>
+        <button>Checkout</button>
+    </div>
+
+    <div class="overlay"></div>
+
+    
+        <script>
+        const cartBtn = document.querySelector('.cart');
+        const cartList = document.getElementById('cart-list');
+        const overlay = document.querySelector('.overlay');
+        let cartProducts = [];
+
+        // Function to add product to cart
+        function addToCart(product) {
+            cartProducts.push(product);
+            renderCart();
+        }
+
+        // Function to remove product from cart
+        function removeFromCart(index) {
+            cartProducts.splice(index, 1);
+            renderCart();
+        }
+
+        // Function to render cart
+        function renderCart() {
+            cartList.innerHTML = '';
+            let total = 0;
+            if (cartProducts.length === 0) {
+                cartList.innerHTML = 'Cart is empty.';
+            } else {
+                cartProducts.forEach((product, index) => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `${product.name} (${product.price})`;
+                    cartList.appendChild(li);
+                    total += product.price;
+                    const removeBtn = document.createElement('button');
+                    removeBtn.textContent = 'Remove';
+                    removeBtn.addEventListener('click', () => {
+                        removeFromCart(index);
+                    });
+                    li.appendChild(removeBtn);
+                });
+            }
+            document.querySelector('.cart-products button').textContent = `Checkout ($${total.toFixed(2)})`;
+        }
+
+        // Function to toggle cart visibility
+        function toggleCart() {
+            const cartProductsEl = document.querySelector('.cart-products');
+            cartProductsEl.style.display = cartProductsEl.style.display === 'none' ? 'block' : 'none';
+            overlay.style.display = cartProductsEl.style.display;
+        }
+
+        // Event listeners
+        cartBtn.addEventListener('click', toggleCart);
+        overlay.addEventListener('click', toggleCart);
+
+        // Add products to the cart
+        const products = [
+            {
+                name: 'Product 1',
+                price: 19.99
+            },
+            {
+                name: 'Product 2',
+                price: 29.99
+            },
+            {
+                name: 'Product 3',
+                price: 39.99
+            }
+        ];
+
+        products.forEach((product) => {
+            const addToCartBtn = document.querySelector(`.product-card:nth-child(${products.indexOf(product) + 1}) button`);
+            addToCartBtn.addEventListener('click', () => {
+                addToCart(product);
+            });
+        });
+    
+
+    </script>
+
+</body>
+</html>
