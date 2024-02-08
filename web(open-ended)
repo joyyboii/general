@@ -122,19 +122,19 @@
 <main>
     <div class="product-card">
         <img src="shopping2.jpeg" alt="Product 1">
-        <h3>Product 1</h3>
+        <h3>Glass set</h3>
         <p>$19.99</p>
         <button>Add to Cart</button>
     </div>
     <div class="product-card">
-        <img src="https://via.placeholder.com/300x200.png?text=Product+2" alt="Product 2">
-        <h3>Product 2</h3>
+        <img src="shopping.jpeg" alt="Product 2">
+        <h3>Classic timepiece</h3>
         <p>$29.99</p>
         <button>Add to Cart</button>
     </div>
     <div class="product-card">
-        <img src="https://via.placeholder.com/300x200.png?text=Product+3" alt="Product 3">
-        <h3>Product 3</h3>
+        <img src="shopping1.jpeg" alt="Product 3">
+        <h3>Blender</h3>
         <p>$39.99</p>
 
             <button class="cart">🛒</button>
