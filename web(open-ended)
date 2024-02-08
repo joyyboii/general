@@ -136,6 +136,7 @@
         <img src="shopping1.jpeg" alt="Product 3">
         <h3>Blender</h3>
         <p>$39.99</p>
+	<button>Add to Cart</button>
 
             <button class="cart">🛒</button>
 
