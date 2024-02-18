@@ -192,10 +192,10 @@
                     const removeBtn = document.createElement('button');
 			removeBtn.textContent = 'Remove'; removeBtn.addEventListener('click', () => { removeFromCart(index); }); li.appendChild(removeBtn); total += product.price * product.quantity; }); } document.querySelector('.cart-products button').textContent = Checkout ($${total.toFixed(2)}); }
 
-// Function to clear cart function clearCart() { cartProducts = []; renderCart(); localStorage.removeItem('cartProducts'); }
+function clearCart() { cartProducts = []; renderCart(); localStorage.removeItem('cartProducts'); }
 
-// Function to checkout function checkout() { alert('Thank you for your purchase!'); clearCart(); }
-        // Event listeners
+function checkout() { alert('Thank you for your purchase!'); clearCart(); }
+       
         cartBtn.addEventListener('click', toggleCart);
         overlay.addEventListener('click', toggleCart);
 
