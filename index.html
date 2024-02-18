@@ -109,7 +109,7 @@
             background-color: white;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-	    cursor: pointer;
+	    
         }
 
         .overlay {
@@ -120,7 +120,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
-	    cursor: pointer;
+	    
         }
 
         .cart-products button {
@@ -162,7 +162,12 @@
         <p>$39.99</p>
 	<button>Add to Cart</button>
     
-	<button class="cart">🛒</button>
+	
+    </div>
+            
+
+    <div class="overlay">
+	    <button class="cart">🛒</button>
 
     <div class="cart-products">
         <h3>Cart</h3>
@@ -170,9 +175,6 @@
         <button id="checkout">Checkout</button>
         <button id="clear-cart">Clear Cart</button>
     </div>
-            
-
-    <div class="overlay"></div>
 
     <script>
         const cartBtn = document.querySelector('.cart');
