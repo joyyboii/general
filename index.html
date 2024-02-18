@@ -172,8 +172,8 @@
     <div class="cart-products">
         <h3>Cart</h3>
         <ul id="cart-list"></ul>
-        <button id="checkout">Checkout</button>
-        <button id="clear-cart">Clear Cart</button>
+        <button id="checkout" onclick="checkout()">Checkout</button>
+        <button id="clear-cart" onclick="clearCart()">Clear Cart</button>
     </div>
 
     <script>
@@ -197,6 +197,14 @@
 	    function clearCart() {
     cartProducts = [];
     renderCart();
+}
+	    function checkout() {
+    let total = 0;
+    for (let i = 0; i < cartProducts.length; i++) {
+        total += cartProducts[i].price;
+    }
+    alert(`Thank you for your purchase! Your total price is $${total.toFixed(2)}`);
+    clearCart();
 }
 
         // Function to render cart
