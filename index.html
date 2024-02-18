@@ -143,28 +143,30 @@
     <div class="cart-products">
         <h3>Cart</h3>
         <ul id="cart-list"></ul>
-        <button>Checkout</button>
+        <button id="checkout">Checkout</button>
+        <button id="clear-cart">Clear Cart</button>
     </div>
 
     <div class="overlay"></div>
 
-    
-        <script>
+    <script>
         const cartBtn = document.querySelector('.cart');
         const cartList = document.getElementById('cart-list');
         const overlay = document.querySelector('.overlay');
-        let cartProducts = [];
+        let cartProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
 
         // Function to add product to cart
         function addToCart(product) {
             cartProducts.push(product);
             renderCart();
+            localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
         }
 
         // Function to remove product from cart
         function removeFromCart(index) {
             cartProducts.splice(index, 1);
             renderCart();
+            localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
         }
 
         // Function to render cart
@@ -178,25 +180,21 @@
                     const li = document.createElement('li');
                     li.innerHTML = `${product.name} (${product.price})`;
                     cartList.appendChild(li);
-                    total += product.price;
-                    const removeBtn = document.createElement('button');
-                    removeBtn.textContent = 'Remove';
-                    removeBtn.addEventListener('click', () => {
-                        removeFromCart(index);
+                    const quantityInput = document.createElement('input');
+                    quantityInput.type = 'number';
+                    quantityInput.min = 1;
+                    quantityInput.value = product.quantity || 1;
+                    quantityInput.addEventListener('change', () => {
+                        product.quantity = quantityInput.value;
+                        localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
                     });
-                    li.appendChild(removeBtn);
-                });
-            }
-            document.querySelector('.cart-products button').textContent = `Checkout ($${total.toFixed(2)})`;
-        }
+                    li.appendChild(quantityInput);
+                    const removeBtn = document.createElement('button');
+			removeBtn.textContent = 'Remove'; removeBtn.addEventListener('click', () => { removeFromCart(index); }); li.appendChild(removeBtn); total += product.price * product.quantity; }); } document.querySelector('.cart-products button').textContent = Checkout ($${total.toFixed(2)}); }
 
-        // Function to toggle cart visibility
-        function toggleCart() {
-            const cartProductsEl = document.querySelector('.cart-products');
-            cartProductsEl.style.display = cartProductsEl.style.display === 'none' ? 'block' : 'none';
-            overlay.style.display = cartProductsEl.style.display;
-        }
+// Function to clear cart function clearCart() { cartProducts = []; renderCart(); localStorage.removeItem('cartProducts'); }
 
+// Function to checkout function checkout() { alert('Thank you for your purchase!'); clearCart(); }
         // Event listeners
         cartBtn.addEventListener('click', toggleCart);
         overlay.addEventListener('click', toggleCart);
