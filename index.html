@@ -81,15 +81,6 @@
             cursor: pointer;
         }
 
-        footer {
-	    
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1rem 0;
-            
-        }
-
         @media (max-width: 768px) {
             main {
                 flex-direction: column;
@@ -113,7 +104,7 @@
         }
 
         .overlay {
-            display: flex;
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
@@ -144,7 +135,7 @@
 <nav>
     <a href="#">Home</a>
     <a href="#">Products</a>
-    <a href="#">Contact</a>
+    <a href="#" onclick="busy()">Contact</a>
     <button class="cart">🛒</button>
 </nav>
 
@@ -201,6 +192,8 @@
         }
 	    function added(){
 		    alert("Item has been added to cart");}
+	    function busy(){
+		    alert("Server busy; Please try again later");}
 	    function clearCart() {
     cartProducts = [];
     renderCart();
