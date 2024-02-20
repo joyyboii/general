@@ -104,14 +104,14 @@
         }
 
         .overlay {
-            display: flex;
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
-	    
+	    z-index: 1000;
         }
 
         .cart-products button {
@@ -325,7 +325,6 @@ contactLink.addEventListener('click', toggleContactForm);
 
 const contactFormForm = document.getElementById('contact-form-form');
 contactFormForm.addEventListener('submit', handleContactFormSubmit);
-
         // Function to toggle cart visibility
         function toggleCart() {
             const cartProductsEl = document.querySelector('.cart-products');
